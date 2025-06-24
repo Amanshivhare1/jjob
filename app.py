@@ -465,3 +465,4 @@ if __name__ == '__main__':
     print(f"📊 Loaded {len(jobs_data)} jobs")
     print("🌐 Server will be available at: http://localhost:3002")
     app.run(debug=True, port=3002, host='0.0.0.0') 
+# sacasf
