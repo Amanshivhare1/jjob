@@ -9,6 +9,7 @@ import json
 from dotenv import load_dotenv
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+import subprocess
 
 # Load environment variables
 load_dotenv()
@@ -453,6 +454,46 @@ def health_check():
         'excelExists': os.path.exists(EXCEL_FILE_PATH)
     })
 
+@app.route('/api/admin/ping', methods=['POST'])
+@jwt_required()
+def admin_ping():
+    user = get_jwt_identity()
+    if not user or user.get('role') != 'admin':
+        return jsonify({'error': 'Admin access required'}), 403
+    data = request.get_json()
+    servers = data.get('servers', [])
+    if isinstance(servers, str):
+        # Allow comma or newline separated
+        servers = [s.strip() for s in servers.replace(',', '\n').split('\n') if s.strip()]
+    results = []
+    for server in servers:
+        if not server:
+            continue
+        try:
+            # Cross-platform ping: -c for Unix, -n for Windows
+            count_flag = '-n' if os.name == 'nt' else '-c'
+            cmd = ['ping', count_flag, '1', server]
+            proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=5, text=True)
+            output = proc.stdout + proc.stderr
+            if proc.returncode == 0:
+                # Try to extract response time
+                if os.name == 'nt':
+                    # Windows: look for 'Average = Xms'
+                    import re
+                    match = re.search(r'Average = (\d+ms)', output)
+                    resp = match.group(1) if match else 'Success'
+                else:
+                    # Unix: look for 'time=X ms'
+                    import re
+                    match = re.search(r'time[=<]([\d\.]+) ?ms', output)
+                    resp = match.group(1) + ' ms' if match else 'Success'
+                results.append({'server': server, 'status': 'Reachable', 'response': resp})
+            else:
+                results.append({'server': server, 'status': 'Unreachable', 'response': output.splitlines()[-1] if output else 'No response'})
+        except Exception as e:
+            results.append({'server': server, 'status': 'Error', 'response': str(e)})
+    return jsonify({'results': results})
+
 # Frontend routes
 @app.route('/', methods=['GET'])
 def serve_frontend():
@@ -465,4 +506,3 @@ if __name__ == '__main__':
     print(f"📊 Loaded {len(jobs_data)} jobs")
     print("🌐 Server will be available at: http://localhost:3002")
     app.run(debug=True, port=3002, host='0.0.0.0') 
-# sacasf
