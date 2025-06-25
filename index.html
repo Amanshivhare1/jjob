@@ -197,208 +197,279 @@
                 </div>
             </div>
         </nav>
+        <!-- Navigator Bar -->
+        <nav id="mainNav" class="bg-gray-900 border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <ul class="flex space-x-6 py-3">
+                    <li><a href="#" id="navDashboard" class="nav-link text-gray-300 hover:text-blue-400 font-medium transition-colors border-b-2 border-transparent pb-1">Dashboard</a></li>
+                    <li id="navPingServersLi" class="hidden"><a href="#" id="navPingServers" class="nav-link text-gray-300 hover:text-blue-400 font-medium transition-colors border-b-2 border-transparent pb-1">Ping Servers</a></li>
+                    <li><a href="#" id="navHandoff" class="nav-link text-gray-300 hover:text-blue-400 font-medium transition-colors border-b-2 border-transparent pb-1">Handoff</a></li>
+                </ul>
+            </div>
+        </nav>
 
         <!-- Main Content -->
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <!-- Metrics Row -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-                <!-- Total Jobs -->
-                <div class="metric-card rounded-xl p-6 card-shadow">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-tasks text-white text-lg"></i>
+            <!-- Dashboard Section -->
+            <div id="dashboardSection">
+                <!-- Metrics Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+                    <!-- Total Jobs -->
+                    <div class="metric-card rounded-xl p-6 card-shadow">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-tasks text-white text-lg"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <p class="text-sm font-medium text-gray-400">Total Jobs</p>
+                                <p id="totalJobs" class="text-2xl font-bold text-white-heading">-</p>
                             </div>
                         </div>
-                        <div class="ml-4 flex-1">
-                            <p class="text-sm font-medium text-gray-400">Total Jobs</p>
-                            <p id="totalJobs" class="text-2xl font-bold text-white-heading">-</p>
-                        </div>
                     </div>
-                </div>
-                <!-- Completed -->
-                <div class="metric-card rounded-xl p-6 card-shadow">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-check-circle text-white text-lg"></i>
+                    <!-- Completed -->
+                    <div class="metric-card rounded-xl p-6 card-shadow">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-check-circle text-white text-lg"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <p class="text-sm font-medium text-gray-400">Completed</p>
+                                <p id="completedJobs" class="text-2xl font-bold text-white-heading">-</p>
                             </div>
                         </div>
-                        <div class="ml-4 flex-1">
-                            <p class="text-sm font-medium text-gray-400">Completed</p>
-                            <p id="completedJobs" class="text-2xl font-bold text-white-heading">-</p>
-                        </div>
                     </div>
-                </div>
-                <!-- Running -->
-                <div class="metric-card rounded-xl p-6 card-shadow">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-play-circle text-white text-lg"></i>
+                    <!-- Running -->
+                    <div class="metric-card rounded-xl p-6 card-shadow">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-play-circle text-white text-lg"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <p class="text-sm font-medium text-gray-400">Running</p>
+                                <p id="runningJobs" class="text-2xl font-bold text-white-heading">-</p>
                             </div>
                         </div>
-                        <div class="ml-4 flex-1">
-                            <p class="text-sm font-medium text-gray-400">Running</p>
-                            <p id="runningJobs" class="text-2xl font-bold text-white-heading">-</p>
-                        </div>
                     </div>
-                </div>
-                <!-- Failed -->
-                <div class="metric-card rounded-xl p-6 card-shadow">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-exclamation-triangle text-white text-lg"></i>
+                    <!-- Failed -->
+                    <div class="metric-card rounded-xl p-6 card-shadow">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-exclamation-triangle text-white text-lg"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <p class="text-sm font-medium text-gray-400">Failed</p>
+                                <p id="failedJobs" class="text-2xl font-bold text-white-heading">-</p>
                             </div>
                         </div>
-                        <div class="ml-4 flex-1">
-                            <p class="text-sm font-medium text-gray-400">Failed</p>
-                            <p id="failedJobs" class="text-2xl font-bold text-white-heading">-</p>
-                        </div>
                     </div>
-                </div>
-                <!-- Delayed -->
-                <div class="metric-card rounded-xl p-6 card-shadow">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-clock text-white text-lg"></i>
+                    <!-- Delayed -->
+                    <div class="metric-card rounded-xl p-6 card-shadow">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-clock text-white text-lg"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <p class="text-sm font-medium text-gray-400">Delayed</p>
+                                <p id="delayedJobs" class="text-2xl font-bold text-white-heading">-</p>
                             </div>
                         </div>
-                        <div class="ml-4 flex-1">
-                            <p class="text-sm font-medium text-gray-400">Delayed</p>
-                            <p id="delayedJobs" class="text-2xl font-bold text-white-heading">-</p>
+                    </div>
+                </div>
+                <!-- Chart and Alerts Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Chart -->
+                    <div class="lg:col-span-1 bg-gray-800 rounded-xl card-shadow p-6 border border-gray-700">
+                        <h3 class="text-lg font-semibold text-white-heading mb-4 text-center">Job Status Distribution</h3>
+                        <div class="relative">
+                            <canvas id="statusChart" height="250"></canvas>
+                            <div id="chartCenterText" class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+                                <span class="text-3xl font-bold text-white-heading"></span>
+                                <span class="text-sm text-gray-400">Total Jobs</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-700">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-gray-400">Last Updated:</span>
+                                <span id="lastUpdated" class="text-xs font-semibold text-gray-300">-</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-400">Data Source:</span>
+                                <span class="text-xs font-semibold text-blue-400">Excel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Alerts -->
+                    <div class="lg:col-span-2 bg-gray-800 rounded-xl card-shadow p-6 border border-gray-700">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-bell text-blue-400 text-xl mr-3"></i>
+                            <h3 class="text-lg font-semibold text-white-heading">Recent Alerts</h3>
+                        </div>
+                        <div id="alertsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Alerts will be populated here -->
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Chart and Alerts Row -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <!-- Chart -->
-                <div class="lg:col-span-1 bg-gray-800 rounded-xl card-shadow p-6 border border-gray-700">
-                    <h3 class="text-lg font-semibold text-white-heading mb-4 text-center">Job Status Distribution</h3>
-                    <div class="relative">
-                        <canvas id="statusChart" height="250"></canvas>
-                        <div id="chartCenterText" class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
-                            <span class="text-3xl font-bold text-white-heading"></span>
-                            <span class="text-sm text-gray-400">Total Jobs</span>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-gray-700">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs text-gray-400">Last Updated:</span>
-                            <span id="lastUpdated" class="text-xs font-semibold text-gray-300">-</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-gray-400">Data Source:</span>
-                            <span class="text-xs font-semibold text-blue-400">Excel</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Alerts -->
-                <div class="lg:col-span-2 bg-gray-800 rounded-xl card-shadow p-6 border border-gray-700">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-bell text-blue-400 text-xl mr-3"></i>
-                        <h3 class="text-lg font-semibold text-white-heading">Recent Alerts</h3>
-                    </div>
-                    <div id="alertsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Alerts will be populated here -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Search and Filters -->
-            <div class="bg-white rounded-xl shadow-lg border border-gray-200 mb-8">
-                <div class="p-6">
-                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-                        <div class="col-span-2 flex items-end space-x-2">
-                            <div class="flex-1">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                <!-- Search and Filters -->
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 mb-8">
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                            <div class="col-span-2 flex items-end space-x-2">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        <i class="fas fa-search mr-1"></i>Search
+                                    </label>
+                                    <input type="text" id="searchInput" placeholder="Search jobs..." 
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <button id="searchBtn" onclick="searchJobs()" class="btn-primary text-white px-4 py-2 rounded-lg font-medium flex items-center h-10">
                                     <i class="fas fa-search mr-1"></i>Search
-                                </label>
-                                <input type="text" id="searchInput" placeholder="Search jobs..." 
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </button>
                             </div>
-                            <button id="searchBtn" onclick="searchJobs()" class="btn-primary text-white px-4 py-2 rounded-lg font-medium flex items-center h-10">
-                                <i class="fas fa-search mr-1"></i>Search
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-filter mr-1"></i>Status
+                                </label>
+                                <select id="statusFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="all">All Status</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="running">Running</option>
+                                    <option value="failed">Failed</option>
+                                    <option value="delayed">Delayed</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-flag mr-1"></i>Priority
+                                </label>
+                                <select id="priorityFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="all">All Priorities</option>
+                                    <option value="high">High</option>
+                                    <option value="normal">Normal</option>
+                                    <option value="low">Low</option>
+                                </select>
+                            </div>
+                            <div class="flex items-end">
+                                <button id="showAllBtn" onclick="showAllJobs()" class="w-full btn-secondary text-white px-4 py-2 rounded-lg font-medium hidden">
+                                    <i class="fas fa-list-ul mr-2"></i>Show All
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Jobs Table -->
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                <i class="fas fa-table mr-2"></i>Jobs Overview
+                            </h3>
+                            <button onclick="exportData()" class="btn-success text-white px-4 py-2 rounded-lg font-medium">
+                                <i class="fas fa-download mr-2"></i>
+                                Export CSV
                             </button>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">
-                                <i class="fas fa-filter mr-1"></i>Status
-                            </label>
-                            <select id="statusFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <option value="all">All Status</option>
-                                <option value="completed">Completed</option>
-                                <option value="running">Running</option>
-                                <option value="failed">Failed</option>
-                                <option value="delayed">Delayed</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">
-                                <i class="fas fa-flag mr-1"></i>Priority
-                            </label>
-                            <select id="priorityFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <option value="all">All Priorities</option>
-                                <option value="high">High</option>
-                                <option value="normal">Normal</option>
-                                <option value="low">Low</option>
-                            </select>
-                        </div>
-                        <div class="flex items-end">
-                            <button id="showAllBtn" onclick="showAllJobs()" class="w-full btn-secondary text-white px-4 py-2 rounded-lg font-medium hidden">
-                                <i class="fas fa-list-ul mr-2"></i>Show All
-                            </button>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <i class="fas fa-tag mr-1"></i>Job Name
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <i class="fas fa-info-circle mr-1"></i>Status
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <i class="fas fa-clock mr-1"></i>Start Time
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <i class="fas fa-stop-circle mr-1"></i>End Time
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <i class="fas fa-hourglass-half mr-1"></i>Duration
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <i class="fas fa-flag mr-1"></i>Priority
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <i class="fas fa-link mr-1"></i>Dependencies
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="jobsTableBody" class="bg-white divide-y divide-gray-200">
+                                    <!-- Jobs will be populated here -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Jobs Table -->
-            <div class="bg-white rounded-xl shadow-lg border border-gray-200">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-semibold text-gray-900">
-                            <i class="fas fa-table mr-2"></i>Jobs Overview
-                        </h3>
-                        <button onclick="exportData()" class="btn-success text-white px-4 py-2 rounded-lg font-medium">
-                            <i class="fas fa-download mr-2"></i>
-                            Export CSV
-                        </button>
+            <!-- Ping Servers Section (admin only) -->
+            <div id="pingServersSection" class="hidden mb-8">
+                <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-4">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-network-wired text-blue-400 text-xl mr-2"></i>
+                        <h4 class="text-md font-semibold text-white-heading">Ping Servers</h4>
                     </div>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
+                    <form id="pingForm" class="mb-4">
+                        <label for="pingServers" class="block text-sm font-medium text-gray-300 mb-2">Enter server names or IPs (comma or newline separated):</label>
+                        <textarea id="pingServers" rows="2" class="w-full p-3 rounded-lg bg-gray-900 border border-gray-700 text-gray-100 mb-2" placeholder="server1\nserver2\n8.8.8.8"></textarea>
+                        <button type="submit" class="btn-primary text-white px-4 py-2 rounded-lg font-medium mt-2"><i class="fas fa-satellite-dish mr-1"></i>Ping</button>
+                    </form>
+                    <div id="pingResultsContainer" class="hidden">
+                        <table class="min-w-full divide-y divide-gray-700 bg-gray-900 rounded-lg">
+                            <thead>
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        <i class="fas fa-tag mr-1"></i>Job Name
-                                    </th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        <i class="fas fa-info-circle mr-1"></i>Status
-                                    </th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        <i class="fas fa-clock mr-1"></i>Start Time
-                                    </th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        <i class="fas fa-stop-circle mr-1"></i>End Time
-                                    </th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        <i class="fas fa-hourglass-half mr-1"></i>Duration
-                                    </th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        <i class="fas fa-flag mr-1"></i>Priority
-                                    </th>
-                                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        <i class="fas fa-link mr-1"></i>Dependencies
-                                    </th>
+                                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-400 uppercase">Server</th>
+                                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-400 uppercase">Status</th>
+                                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-400 uppercase">Response</th>
                                 </tr>
                             </thead>
-                            <tbody id="jobsTableBody" class="bg-white divide-y divide-gray-200">
-                                <!-- Jobs will be populated here -->
-                            </tbody>
+                            <tbody id="pingResultsBody"></tbody>
                         </table>
+                    </div>
+                    <div id="pingLoading" class="hidden mt-2 text-blue-300 flex items-center"><span class="loading-spinner mr-2"></span>Pinging...</div>
+                </div>
+            </div>
+            <!-- Handoff Section -->
+            <div id="handoffSection" class="hidden mb-8">
+                <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-4">
+                    <div class="flex flex-wrap items-center mb-4 gap-2">
+                        <button id="handoffAddRowBtn" class="btn-primary text-white px-4 py-2 rounded-lg font-medium" title="Add a new blank row"><i class="fas fa-plus mr-1"></i>Add Row</button>
+                        <button id="handoffPasteBtn" class="btn-secondary text-white px-4 py-2 rounded-lg font-medium" title="Paste multiple rows copied from Excel"><i class="fas fa-paste mr-1"></i>Paste from Excel</button>
+                    </div>
+                    <div class="text-gray-400 text-sm mb-2">Tip: Click <b>+ Add Row</b> to start, or <b>Paste from Excel</b> to add many at once. Click any cell to edit. Click <span class='text-red-400'><i class='fas fa-trash'></i></span> to remove a row.</div>
+                    <div id="handoffPasteAreaContainer" class="hidden mb-4">
+                        <textarea id="handoffPasteArea" rows="3" class="w-full p-3 rounded-lg bg-gray-900 border border-gray-700 text-gray-100 mb-2" placeholder="Paste rows from Excel here (Date, OpenItem, Status)"></textarea>
+                        <button id="handoffImportBtn" class="btn-success text-white px-4 py-2 rounded-lg font-medium"><i class="fas fa-file-import mr-1"></i>Import</button>
+                        <button id="handoffPasteCancelBtn" class="btn-secondary text-white px-4 py-2 rounded-lg font-medium ml-2">Cancel</button>
+                        <div class="text-xs text-gray-400 mt-2">Tip: Copy rows from Excel (3 columns: Date, OpenItem, Status) and paste here. Each row should be on a new line.</div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-700 bg-gray-900 rounded-lg" id="handoffEditTable">
+                            <thead>
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-400 uppercase">Date</th>
+                                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-400 uppercase">Open Item</th>
+                                    <th class="px-4 py-2 text-left text-xs font-semibold text-gray-400 uppercase">Status</th>
+                                    <th class="px-4 py-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="handoffEditBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="flex flex-wrap gap-4 mt-6">
+                        <button id="handoffCopyBtn" class="btn-secondary text-white px-6 py-3 rounded-lg font-bold text-lg"><i class="fas fa-copy mr-2"></i>Copy Table</button>
+                        <button id="handoffSaveBtn" class="btn-success text-white px-6 py-3 rounded-lg font-bold text-lg"><i class="fas fa-save mr-2"></i>Save</button>
                     </div>
                 </div>
             </div>
@@ -474,6 +545,18 @@
             document.getElementById('dashboard').classList.remove('hidden');
             document.getElementById('userInfo').textContent = `${currentUser?.username || 'User'}`;
             loadAlerts();
+            // Show ping servers if admin
+            const user = currentUser || JSON.parse(localStorage.getItem('user'));
+            if (user && user.role === 'admin') {
+                document.getElementById('navPingServersLi').classList.remove('hidden');
+            } else {
+                document.getElementById('navPingServersLi').classList.add('hidden');
+            }
+            // Show dashboard section, hide ping section
+            document.getElementById('dashboardSection').classList.remove('hidden');
+            document.getElementById('pingServersSection').classList.add('hidden');
+            document.getElementById('handoffSection').classList.add('hidden');
+            setActiveNav('Dashboard');
         }
 
         function logout() {
@@ -805,6 +888,203 @@
         function closeJobModal() {
             document.getElementById('jobModal').classList.add('hidden');
         }
+
+        // Navigator logic
+        function setActiveNav(section) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('border-blue-400', 'text-blue-400');
+                link.classList.add('text-gray-300');
+            });
+            document.getElementById('dashboardSection').classList.add('hidden');
+            document.getElementById('pingServersSection').classList.add('hidden');
+            document.getElementById('handoffSection').classList.add('hidden');
+            if (section === 'Dashboard') {
+                document.getElementById('navDashboard').classList.add('border-blue-400', 'text-blue-400');
+                document.getElementById('dashboardSection').classList.remove('hidden');
+            } else if (section === 'Ping Servers') {
+                document.getElementById('navPingServers').classList.add('border-blue-400', 'text-blue-400');
+                document.getElementById('pingServersSection').classList.remove('hidden');
+            } else if (section === 'Handoff') {
+                document.getElementById('navHandoff').classList.add('border-blue-400', 'text-blue-400');
+                document.getElementById('handoffSection').classList.remove('hidden');
+            }
+        }
+        document.getElementById('navDashboard').addEventListener('click', function(e) {
+            e.preventDefault();
+            setActiveNav('Dashboard');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        const navPingServers = document.getElementById('navPingServers');
+        if (navPingServers) {
+            navPingServers.addEventListener('click', function(e) {
+                e.preventDefault();
+                setActiveNav('Ping Servers');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        document.getElementById('navHandoff').addEventListener('click', function(e) {
+            e.preventDefault();
+            setActiveNav('Handoff');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Admin: Ping Servers Tool
+        const pingForm = document.getElementById('pingForm');
+        if (pingForm) {
+            pingForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const servers = document.getElementById('pingServers').value;
+                document.getElementById('pingLoading').classList.remove('hidden');
+                document.getElementById('pingResultsContainer').classList.add('hidden');
+                try {
+                    const response = await fetch('/api/admin/ping', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${authToken}`
+                        },
+                        body: JSON.stringify({ servers })
+                    });
+                    const data = await response.json();
+                    document.getElementById('pingLoading').classList.add('hidden');
+                    if (response.ok && data.results) {
+                        const tbody = document.getElementById('pingResultsBody');
+                        tbody.innerHTML = '';
+                        data.results.forEach(row => {
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                                <td class="px-4 py-2 text-gray-100">${row.server}</td>
+                                <td class="px-4 py-2 ${row.status === 'Reachable' ? 'text-green-400' : row.status === 'Unreachable' ? 'text-red-400' : 'text-yellow-400'} font-semibold">${row.status}</td>
+                                <td class="px-4 py-2 text-gray-300">${row.response}</td>
+                            `;
+                            tbody.appendChild(tr);
+                        });
+                        document.getElementById('pingResultsContainer').classList.remove('hidden');
+                    } else {
+                        const tbody = document.getElementById('pingResultsBody');
+                        tbody.innerHTML = `<tr><td colspan='3' class='px-4 py-2 text-red-400'>${data.error || 'Ping failed'}</td></tr>`;
+                        document.getElementById('pingResultsContainer').classList.remove('hidden');
+                    }
+                } catch (err) {
+                    document.getElementById('pingLoading').classList.add('hidden');
+                    const tbody = document.getElementById('pingResultsBody');
+                    tbody.innerHTML = `<tr><td colspan='3' class='px-4 py-2 text-red-400'>${err.message}</td></tr>`;
+                    document.getElementById('pingResultsContainer').classList.remove('hidden');
+                }
+                setActiveNav('Ping Servers'); // Ensure Ping Servers section stays visible and active
+            });
+        }
+
+        // Handoff editable table logic
+        let handoffRows = [];
+        const handoffEditBody = document.getElementById('handoffEditBody');
+        function renderHandoffTable() {
+            handoffEditBody.innerHTML = '';
+            if (handoffRows.length === 0) {
+                handoffEditBody.innerHTML = `<tr><td colspan='4' class='px-4 py-4 text-center text-gray-400'>No handoff items. Click <b>+ Add Row</b> or <b>Paste from Excel</b> to start.</td></tr>`;
+            } else {
+                handoffRows.forEach((row, idx) => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class='px-4 py-2'><input type='text' class='w-full bg-gray-800 text-gray-100 rounded px-2 py-1' value='${row.date}' placeholder='Date (e.g. 06/01/2024)' title='Date' onchange='handoffUpdateCell(${idx}, "date", this.value)' /></td>
+                        <td class='px-4 py-2'><input type='text' class='w-full bg-gray-800 text-gray-100 rounded px-2 py-1' value='${row.openitem}' placeholder='Describe the open item' title='Open Item' onchange='handoffUpdateCell(${idx}, "openitem", this.value)' /></td>
+                        <td class='px-4 py-2'><input type='text' class='w-full bg-gray-800 text-gray-100 rounded px-2 py-1' value='${row.status}' placeholder='Status (e.g. Open, Closed)' title='Status' onchange='handoffUpdateCell(${idx}, "status", this.value)' /></td>
+                        <td class='px-4 py-2 text-right'><button class='text-red-400 hover:text-red-600' title='Remove this row' onclick='handoffDeleteRow(${idx})'><i class='fas fa-trash'></i></button></td>
+                    `;
+                    handoffEditBody.appendChild(tr);
+                });
+            }
+        }
+        window.handoffUpdateCell = function(idx, key, value) {
+            handoffRows[idx][key] = value;
+        };
+        window.handoffDeleteRow = function(idx) {
+            handoffRows.splice(idx, 1);
+            renderHandoffTable();
+        };
+        document.getElementById('handoffAddRowBtn').addEventListener('click', function() {
+            handoffRows.push({ date: '', openitem: '', status: '' });
+            renderHandoffTable();
+        });
+        document.getElementById('handoffSaveBtn').addEventListener('click', function() {
+            alert('Handoff data to save: ' + JSON.stringify(handoffRows));
+        });
+        document.getElementById('handoffCopyBtn').addEventListener('click', function() {
+            if (handoffRows.length === 0) {
+                alert('No data to copy. Add some items first.');
+                return;
+            }
+            
+            // Format table data for copying
+            let tableText = 'Date\tOpen Item\tStatus\n';
+            handoffRows.forEach(row => {
+                tableText += `${row.date || ''}\t${row.openitem || ''}\t${row.status || ''}\n`;
+            });
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(tableText).then(function() {
+                // Show success message
+                const originalText = document.getElementById('handoffCopyBtn').innerHTML;
+                document.getElementById('handoffCopyBtn').innerHTML = '<i class="fas fa-check mr-2"></i>Copied!';
+                document.getElementById('handoffCopyBtn').classList.remove('btn-secondary');
+                document.getElementById('handoffCopyBtn').classList.add('btn-success');
+                
+                setTimeout(() => {
+                    document.getElementById('handoffCopyBtn').innerHTML = originalText;
+                    document.getElementById('handoffCopyBtn').classList.remove('btn-success');
+                    document.getElementById('handoffCopyBtn').classList.add('btn-secondary');
+                }, 2000);
+            }).catch(function(err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = tableText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const originalText = document.getElementById('handoffCopyBtn').innerHTML;
+                document.getElementById('handoffCopyBtn').innerHTML = '<i class="fas fa-check mr-2"></i>Copied!';
+                document.getElementById('handoffCopyBtn').classList.remove('btn-secondary');
+                document.getElementById('handoffCopyBtn').classList.add('btn-success');
+                
+                setTimeout(() => {
+                    document.getElementById('handoffCopyBtn').innerHTML = originalText;
+                    document.getElementById('handoffCopyBtn').classList.remove('btn-success');
+                    document.getElementById('handoffCopyBtn').classList.add('btn-secondary');
+                }, 2000);
+            });
+        });
+        // Paste from Excel logic
+        const handoffPasteBtn = document.getElementById('handoffPasteBtn');
+        const handoffPasteAreaContainer = document.getElementById('handoffPasteAreaContainer');
+        const handoffPasteArea = document.getElementById('handoffPasteArea');
+        const handoffImportBtn = document.getElementById('handoffImportBtn');
+        const handoffPasteCancelBtn = document.getElementById('handoffPasteCancelBtn');
+        handoffPasteBtn.addEventListener('click', function() {
+            handoffPasteAreaContainer.classList.remove('hidden');
+            handoffPasteArea.value = '';
+            handoffPasteArea.focus();
+        });
+        handoffPasteCancelBtn.addEventListener('click', function() {
+            handoffPasteAreaContainer.classList.add('hidden');
+        });
+        handoffImportBtn.addEventListener('click', function() {
+            const text = handoffPasteArea.value.trim();
+            if (!text) return;
+            // Parse pasted table data (tab or comma separated)
+            const rows = text.split(/\r?\n/).map(r => r.split(/\t|,|\s{2,}/));
+            const imported = rows.filter(r => r.length >= 3).map(r => ({ date: r[0], openitem: r[1], status: r[2] }));
+            if (imported.length) {
+                handoffRows = handoffRows.concat(imported);
+                renderHandoffTable();
+                handoffPasteAreaContainer.classList.add('hidden');
+            } else {
+                handoffPasteArea.value = '';
+                handoffPasteArea.placeholder = 'No valid data found. Please paste again.';
+            }
+        });
+        renderHandoffTable();
     </script>
 </body>
 </html> 
